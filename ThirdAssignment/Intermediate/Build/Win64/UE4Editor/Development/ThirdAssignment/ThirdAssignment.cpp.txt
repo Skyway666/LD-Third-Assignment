@@ -1,2 +1,0 @@
-C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\Definitions.ThirdAssignment.h
-c:\users\gaming\documents\unreal projects\thirdassignment\source\thirdassignment\ThirdAssignment.h
