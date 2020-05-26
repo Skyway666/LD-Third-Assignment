@@ -1,0 +1,11 @@
+﻿  Building ThirdAssignmentEditor...
+  Using Visual Studio 2017 14.16.27023 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023) and Windows 10.0.17134.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  Building 4 actions with 8 processes...
+    [1/4] ThirdAssignmentCharacter.cpp
+    [2/4] UE4Editor-ThirdAssignment-0001.lib
+       Creando biblioteca C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\UE4Editor-ThirdAssignment-0001.lib y objeto C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\UE4Editor-ThirdAssignment-0001.exp
+    [3/4] UE4Editor-ThirdAssignment-0001.dll
+       Creando biblioteca C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\UE4Editor-ThirdAssignment-0001.suppressed.lib y objeto C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\UE4Editor-ThirdAssignment-0001.suppressed.exp
+    [4/4] ThirdAssignmentEditor.target
+  Total time in Parallel executor: 30,66 seconds
+  Total execution time: 33,73 seconds

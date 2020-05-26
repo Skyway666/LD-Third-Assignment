@@ -1,0 +1,9 @@
+C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\Definitions.ThirdAssignment.h
+E:\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+E:\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Source\ThirdAssignment/ThirdAssignmentCharacter.h
+E:\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+E:\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+E:\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+E:\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+c:\users\gaming\documents\unreal projects\thirdassignment\intermediate\build\win64\ue4editor\inc\thirdassignment\ThirdAssignmentCharacter.generated.h

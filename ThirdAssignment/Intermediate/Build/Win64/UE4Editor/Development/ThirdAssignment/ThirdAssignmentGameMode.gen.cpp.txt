@@ -1,0 +1,9 @@
+C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\Definitions.ThirdAssignment.h
+E:\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+E:\UE\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\Gaming\Documents\Unreal Projects\ThirdAssignment\Source\ThirdAssignment/ThirdAssignmentGameMode.h
+E:\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+E:\UE\UE_4.25\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+E:\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+E:\UE\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+c:\users\gaming\documents\unreal projects\thirdassignment\intermediate\build\win64\ue4editor\inc\thirdassignment\ThirdAssignmentGameMode.generated.h
