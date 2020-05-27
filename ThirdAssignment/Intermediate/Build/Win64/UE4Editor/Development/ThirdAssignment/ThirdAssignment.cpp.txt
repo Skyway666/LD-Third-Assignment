@@ -1,2 +1,0 @@
-C:\Users\Gaming\Documents\GitHub\LD-Third-Assignment\ThirdAssignment\Intermediate\Build\Win64\UE4Editor\Development\ThirdAssignment\Definitions.ThirdAssignment.h
-c:\users\gaming\documents\github\ld-third-assignment\thirdassignment\source\thirdassignment\ThirdAssignment.h
