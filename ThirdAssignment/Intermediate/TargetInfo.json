@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ThirdAssignment",
+			"Path": "C:\\Users\\Gaming\\Documents\\Unreal Projects\\ThirdAssignment\\Source\\ThirdAssignment.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ThirdAssignmentEditor",
+			"Path": "C:\\Users\\Gaming\\Documents\\Unreal Projects\\ThirdAssignment\\Source\\ThirdAssignmentEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
