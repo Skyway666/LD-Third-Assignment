@@ -3,6 +3,7 @@
 
 #include "Guard.h"
 
+
 // Sets default values
 AGuard::AGuard()
 {
@@ -10,6 +11,7 @@ AGuard::AGuard()
 	PrimaryActorTick.bCanEverTick = true;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
+	
 
 }
 
@@ -19,12 +21,29 @@ void AGuard::BeginPlay()
 	Super::BeginPlay();
 
 	FTimerHandle timerHandle;
-	GetWorldTimerManager().SetTimer(timerHandle, this, &AGuard::InvertSpeed, changeDirectionInterval, true, 0.0f);
+	GetWorldTimerManager().SetTimer(timerHandle, this, &AGuard::UpdateDestinationIndex, changeDirectionInterval, true, 0.0f);
 }
 
 // Inverts speed
-void AGuard::InvertSpeed() {
-	speed = -speed;
+void AGuard::UpdateDestinationIndex() {
+	//speed = -speed;
+
+	if (patrollPoints.Num() == 0){
+		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Black, "Array has not been initialized yet");
+		return;
+	}
+
+	switch(destinationIndex){
+		case 0: 
+			destinationIndex = 1;
+			break;
+		case 1: 
+			destinationIndex = 0;
+			break;
+	}
+
+	SetActorLocation(patrollPoints[destinationIndex]->GetActorLocation());
+
 }
 
 // Called every frame
@@ -32,10 +51,9 @@ void AGuard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FVector newLocation = GetActorLocation();
+	//FVector newLocation = GetActorLocation();
 
-	newLocation.X += speed * DeltaTime;
-	SetActorLocation(newLocation);
-
+	//newLocation.X += speed * DeltaTime;
+	//SetActorLocation(newLocation);
 }
 

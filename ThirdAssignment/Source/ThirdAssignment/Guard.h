@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "PatrollPoint.h"
+
 #include "Guard.generated.h"
+
 
 UCLASS()
 class THIRDASSIGNMENT_API AGuard : public AActor
@@ -29,10 +32,17 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float changeDirectionInterval = 2.0f;
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	TArray<APatrollPoint*> patrollPoints;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void InvertSpeed();
+	void UpdateDestinationIndex();
+
+private:
+
+	int destinationIndex = 0;
 
 };
