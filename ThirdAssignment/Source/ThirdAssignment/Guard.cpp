@@ -48,13 +48,10 @@ void AGuard::BeginPlay()
 
 void AGuard::patrollPointReached() {
 
-	switch(destinationIndex){
-	case 0: 
-		destinationIndex = 1;
-		break;
-	case 1: 
+	destinationIndex++;
+
+	if (destinationIndex == patrollPoints.Num()) {
 		destinationIndex = 0;
-		break;
 	}
 }
 
