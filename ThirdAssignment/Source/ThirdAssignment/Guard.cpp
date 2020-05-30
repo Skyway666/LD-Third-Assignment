@@ -2,6 +2,15 @@
 
 
 #include "Guard.h"
+#include "PatrollPoint.h"
+#include "ThirdAssignmentCharacter.h"
+
+
+#include "EngineUtils.h"
+#include "DrawDebugHelpers.h"
+
+
+
 
 
 // Sets default values
@@ -12,7 +21,6 @@ AGuard::AGuard()
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
 	
-
 }
 
 // Called when the game starts or when spawned
@@ -20,8 +28,17 @@ void AGuard::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FTimerHandle timerHandle;
+	//FTimerHandle timerHandle;
 	//GetWorldTimerManager().SetTimer(timerHandle, this, &AGuard::UpdateDestinationIndex, changeDirectionInterval, true, 0.0f);
+
+	UWorld* world = GetWorld();
+
+	for (TActorIterator<AThirdAssignmentCharacter> It(world, AThirdAssignmentCharacter::StaticClass()); It; ++It) {
+		player = *It;
+	}
+
+	if(!player)
+		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "Player has not been found");
 }
 
 // Inverts speed
@@ -54,14 +71,9 @@ void AGuard::patrollPointReached() {
 		destinationIndex = 0;
 	}
 }
-
-// Called every frame
-void AGuard::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
+void AGuard::move(float DeltaTime) {
 	if (patrollPoints.Num() == 0) {
-		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Black, "Array has not been initialized yet");
+		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "Array has not been initialized yet");
 		return;
 	}
 
@@ -84,5 +96,49 @@ void AGuard::Tick(float DeltaTime)
 	if (diffVector.Size() < 1.0f) {
 		patrollPointReached();
 	}
+}
+
+void AGuard::checkRaycast() {
+
+	// Get player location and display in 
+	FVector target = player->GetActorLocation();
+	FVector origin = GetActorLocation();
+	TArray<FHitResult> hits;
+	FCollisionQueryParams result;
+
+	bool hitCube = GetWorld()->LineTraceMultiByChannel(hits, target, origin, ECollisionChannel::ECC_Visibility, result);
+
+	DrawDebugLine(GetWorld(), target, origin, FColor::Red, false, 2.0f);
+
+	bool playerFound = true;
+	for (auto& hit : hits) {
+		FString hitActorName = *hit.GetActor()->GetName();
+
+		// The guard has found himself, ignore it
+		if (hitActorName == GetName())
+			continue;
+
+
+		// If anything but the guard itself is found, there is something blocking the raycast to the player
+		playerFound = false;
+		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("I see: %s, can't find player :("), *hitActorName));
+		DrawDebugBox(GetWorld(), hit.ImpactPoint, FVector(5, 5, 5), FColor::Emerald, false, 2.0f);
+
+	}
+
+	if (playerFound)
+		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("The player is in -> x: %f, y: %f"), target.X, target.Y));
+
+
+}
+
+// Called every frame
+void AGuard::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	move(DeltaTime);
+	checkRaycast();
+
 }
 

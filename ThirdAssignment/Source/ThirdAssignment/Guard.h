@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "PatrollPoint.h"
 
 #include "Guard.generated.h"
+
+class APatrollPoint;
+class AThirdAssignmentCharacter;
 
 
 UCLASS()
@@ -40,10 +42,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	//void UpdateDestinationIndex();
-	void patrollPointReached();
 
 private:
 
 	int destinationIndex = 0;
+	AThirdAssignmentCharacter* player;
+
+	void patrollPointReached();
+	void move(float DeltaTime);
+	void checkRaycast();
 
 };
