@@ -88,9 +88,19 @@ void AGuard::move(float DeltaTime) {
 	FVector2D direction(diffVector);
 	direction.Normalize();
 	FVector velocity = FVector(direction * speed, 0) * DeltaTime;
+	FVector newPosition = location3D + velocity;
 
-	// Update position
-	SetActorLocation(location3D + velocity);
+	// Compute new transform (forward in speed direction)
+	FQuat newRotation = FQuat::MakeFromEuler(FVector(0, 0, atan2(direction.Y, direction.X) * 180 / PI));
+
+	// Update position and rotation
+	FTransform transform = GetActorTransform();
+
+	transform.SetRotation(newRotation);
+	transform.SetLocation(newPosition);
+
+	SetActorTransform(transform);
+	
 
 	// Check if the actor has rached the destination
 	if (diffVector.Size() < 1.0f) {
@@ -100,9 +110,29 @@ void AGuard::move(float DeltaTime) {
 
 void AGuard::checkRaycast() {
 
-	// Get player location and display in 
+	// Get player and guard location
 	FVector target = player->GetActorLocation();
 	FVector origin = GetActorLocation();
+
+	// Compute angle between forward and ray direction
+	FVector rayDirection = target - origin;
+	FVector2D rayDirection2D = FVector2D(rayDirection.X, rayDirection.Y);
+	rayDirection2D.Normalize();
+
+	FVector actorForward = GetActorForwardVector();
+	FVector2D actorForward2D = FVector2D(actorForward.X, actorForward.Y);
+	actorForward2D.Normalize();
+
+	float dotProduct = FVector2D::DotProduct(actorForward2D, rayDirection2D);
+	float playerAngle = acos(dotProduct) * 180 / PI;
+
+	// Compute player distance from guard
+	float playerDistance = FVector::Dist(target, origin);
+
+	// If the player is out of the guard's vision, don't bother throwing the ray
+	if (playerAngle > visionAngle || playerDistance > visionRange)
+		return;
+
 	TArray<FHitResult> hits;
 	FCollisionQueryParams result;
 

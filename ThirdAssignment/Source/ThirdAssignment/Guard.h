@@ -27,15 +27,18 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* StaticMesh;
 
+
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	int speed = 50;
-
-	// In seconds. Time before the speed is reverted
-	UPROPERTY(EditAnywhere, Category = "Movement")
-	float changeDirectionInterval = 2.0f;
-
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	TArray<APatrollPoint*> patrollPoints;
+
+	// In degrees. Angle of vision, from forward to the sides (the total angle is double this)
+	UPROPERTY(EditAnywhere, Category = "Vision")
+	float visionAngle = 45.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Vision")
+	float visionRange = 50.0f;
 
 public:	
 	// Called every frame
