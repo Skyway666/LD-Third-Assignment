@@ -103,7 +103,7 @@ void AGuard::move(float DeltaTime) {
 	
 
 	// Check if the actor has rached the destination
-	if (diffVector.Size() < 1.0f) {
+	if (diffVector.Size() < changePatrollPointDistance) {
 		patrollPointReached();
 	}
 }

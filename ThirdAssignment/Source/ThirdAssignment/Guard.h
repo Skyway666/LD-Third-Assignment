@@ -32,6 +32,8 @@ protected:
 	int speed = 50;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	TArray<APatrollPoint*> patrollPoints;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float changePatrollPointDistance = 10.0f;
 
 	// In degrees. Angle of vision, from forward to the sides (the total angle is double this)
 	UPROPERTY(EditAnywhere, Category = "Vision")
