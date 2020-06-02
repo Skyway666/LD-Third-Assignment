@@ -8,6 +8,7 @@
 
 #include "EngineUtils.h"
 #include "DrawDebugHelpers.h"
+#include "Kismet/GameplayStatics.h"
 
 
 
@@ -156,9 +157,10 @@ void AGuard::checkRaycast() {
 
 	}
 
-	if (playerFound)
+	if (playerFound){
 		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("The player is in -> x: %f, y: %f"), target.X, target.Y));
-
+		UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
+	}
 
 }
 
