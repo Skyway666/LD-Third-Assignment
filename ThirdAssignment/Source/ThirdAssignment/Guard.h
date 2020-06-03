@@ -30,7 +30,7 @@ protected:
 
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-	int speed = 50;
+	int speed = 400;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	TArray<APatrollPoint*> patrollPoints;
 	UPROPERTY(EditAnywhere, Category = "Movement")
@@ -41,7 +41,7 @@ protected:
 	float visionAngle = 45.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Vision")
-	float visionRange = 50.0f;
+	float visionRange = 1000.0f;
 
 public:	
 	// Called every frame
