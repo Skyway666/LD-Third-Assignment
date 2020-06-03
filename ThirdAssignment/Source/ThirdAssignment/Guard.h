@@ -9,6 +9,7 @@
 
 class APatrollPoint;
 class AThirdAssignmentCharacter;
+class AGameManager;
 
 
 UCLASS()
@@ -52,6 +53,7 @@ private:
 
 	int destinationIndex = 0;
 	AThirdAssignmentCharacter* player;
+	AGameManager* gameManager;
 
 	void patrollPointReached();
 	void move(float DeltaTime);

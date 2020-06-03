@@ -4,6 +4,7 @@
 #include "Guard.h"
 #include "PatrollPoint.h"
 #include "ThirdAssignmentCharacter.h"
+#include "GameManager.h"
 
 
 #include "EngineUtils.h"
@@ -40,6 +41,13 @@ void AGuard::BeginPlay()
 
 	if(!player)
 		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "Player has not been found");
+
+	for (TActorIterator<AGameManager> It(world, AGameManager::StaticClass()); It; ++It) {
+		gameManager = *It;
+	}
+
+	if (!gameManager)
+		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "GameManager has not been found");
 }
 
 // Inverts speed
@@ -159,7 +167,7 @@ void AGuard::checkRaycast() {
 
 	if (playerFound){
 		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("The player is in -> x: %f, y: %f"), target.X, target.Y));
-		UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
+		gameManager->OnPlayerSpotted();
 	}
 
 }
