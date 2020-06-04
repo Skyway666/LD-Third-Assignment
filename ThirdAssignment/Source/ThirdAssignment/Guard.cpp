@@ -178,7 +178,10 @@ void AGuard::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	move(DeltaTime);
-	checkRaycast();
+	if(DeltaTime != 0)
+		checkRaycast();
+
+	GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("The Delta time is %f"), DeltaTime));
 
 }
 

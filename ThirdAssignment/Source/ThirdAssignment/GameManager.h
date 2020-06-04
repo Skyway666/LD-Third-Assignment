@@ -29,4 +29,8 @@ public:
 	void OnPlayerSpotted_Implementation();
 
 
+	UPROPERTY(EditAnywhere, Category = "Gameplay")
+	bool timeStopped = false;
+
+
 };
