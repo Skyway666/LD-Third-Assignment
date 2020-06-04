@@ -29,7 +29,7 @@ public:
 	void OnPlayerSpotted_Implementation();
 
 
-	UPROPERTY(EditAnywhere, Category = "Gameplay")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	bool timeStopped = false;
 
 
