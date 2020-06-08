@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Disabler.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AThirdAssignmentCharacter
@@ -54,8 +55,6 @@ void AThirdAssignmentCharacter::SetupPlayerInputComponent(class UInputComponent*
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	/*PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);*/
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AThirdAssignmentCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AThirdAssignmentCharacter::MoveRight);
@@ -74,6 +73,9 @@ void AThirdAssignmentCharacter::SetupPlayerInputComponent(class UInputComponent*
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AThirdAssignmentCharacter::OnResetVR);
+
+	// Shoot Disabler
+	PlayerInputComponent->BindAction("ShootDisabler", IE_Pressed, this, &AThirdAssignmentCharacter::ShootDisabler);
 }
 
 
@@ -90,6 +92,17 @@ void AThirdAssignmentCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVec
 void AThirdAssignmentCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
 {
 		StopJumping();
+}
+
+void AThirdAssignmentCharacter::ShootDisabler() {
+	if(disablerCharges > 0){
+		GetWorld()->SpawnActor<ADisabler>(GetActorLocation() + GetActorForwardVector() * 30.0f, GetActorRotation());
+		disablerCharges--;
+	}
+	else {
+		// TODO: Play "disabled" noise
+	}
+		
 }
 
 void AThirdAssignmentCharacter::TurnAtRate(float Rate)

@@ -30,6 +30,7 @@ void ADisabler::BeginPlay()
 {
 	Super::BeginPlay();
 
+	StaticMesh->AddImpulse(GetActorForwardVector() * 2500.0f, "None", true);
 	// TODO: Impulse the ball in the forward direction of the player that owns it
 	
 }
