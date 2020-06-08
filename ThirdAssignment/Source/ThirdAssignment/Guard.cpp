@@ -144,7 +144,7 @@ void AGuard::checkRaycast() {
 	TArray<FHitResult> hits;
 	FCollisionQueryParams result;
 
-	bool hitCube = GetWorld()->LineTraceMultiByChannel(hits, origin, target, ECollisionChannel::ECC_Visibility, result);
+	bool hitCube = GetWorld()->LineTraceMultiByChannel(hits, target, origin, ECollisionChannel::ECC_Visibility, result);
 
 	DrawDebugLine(GetWorld(), target, origin, FColor::Red, false, 2.0f);
 
