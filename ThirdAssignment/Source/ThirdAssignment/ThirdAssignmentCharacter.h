@@ -29,6 +29,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Charges")
+	int timeStopCharges = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Charges")
+	int disablerCharges = 0;
+
 protected:
 
 	/** Resets HMD orientation in VR. */

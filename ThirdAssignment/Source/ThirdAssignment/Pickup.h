@@ -8,6 +8,12 @@
 
 class UShapeComponent;
 
+UENUM()
+enum PickupType {
+	TIME_STOP UMETA(DisplayName = "Time Stop"),
+	DISABLER  UMETA(DisplayName = "Disabler")
+};
+
 UCLASS()
 class THIRDASSIGNMENT_API APickup : public AActor
 {
@@ -25,6 +31,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Collision")
 	UShapeComponent* collider;
+
+	UPROPERTY(EditAnywhere, Category = "Logic")
+	TEnumAsByte<PickupType> pickupType;
 
 	UFUNCTION()
 	void OnPlayerTouchPickup(UPrimitiveComponent* OverlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult);

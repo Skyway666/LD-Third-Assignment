@@ -2,6 +2,7 @@
 
 #include "Pickup.h"
 
+#include "ThirdAssignmentCharacter.h"
 #include "Components/ShapeComponent.h"
 #include "Components/BoxComponent.h"
 
@@ -40,5 +41,20 @@ void APickup::Tick(float DeltaTime)
 }
 
 void APickup::OnPlayerTouchPickup(UPrimitiveComponent* OverlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult) {
+	
+	AThirdAssignmentCharacter* player = (AThirdAssignmentCharacter*)otherActor;
+	switch (pickupType) {
+		case PickupType::TIME_STOP: 
+		{
+			player->timeStopCharges++;
+			break;
+		}
+		case PickupType::DISABLER:
+		{
+			player->disablerCharges++;
+			break;
+		}
+	}
+
 	Destroy();
 }
