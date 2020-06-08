@@ -80,11 +80,6 @@ void AGuard::patrollPointReached() {
 	}
 }
 void AGuard::move(float DeltaTime) {
-	if (patrollPoints.Num() == 0) {
-		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "Array has not been initialized yet");
-		return;
-	}
-
 	// Compute points
 	FVector destination3D = patrollPoints[destinationIndex]->GetActorLocation();
 	FVector location3D = GetActorLocation();
@@ -176,7 +171,10 @@ void AGuard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	move(DeltaTime);
+	// If there are no patroll points the guard is static, don't attempt to move him
+	if (patrollPoints.Num() != 0) {
+		move(DeltaTime);
+	}
 	if(!gameManager->timeStopped)
 		checkRaycast();
 
