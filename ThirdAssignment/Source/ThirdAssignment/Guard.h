@@ -47,14 +47,21 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void Disable(float disabledTime);
+	
+	// To be called by a timer once "disabledTime" has elapsed
+	void Awake();
+
 private:
 
 	int destinationIndex = 0;
 	AThirdAssignmentCharacter* player;
 	AGameManager* gameManager;
+	bool disabled;
 
 	void patrollPointReached();
 	void move(float DeltaTime);
 	void checkRaycast();
+
 
 };

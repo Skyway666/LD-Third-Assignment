@@ -4,6 +4,8 @@
 #include "Disabler.h"
 #include "UObject/ConstructorHelpers.h"
 
+#include "Guard.h"
+
 // Sets default values
 ADisabler::ADisabler()
 {
@@ -38,8 +40,14 @@ void ADisabler::BeginPlay()
 void ADisabler::NotifyHit(UPrimitiveComponent * MyComp, AActor * otherActor, UPrimitiveComponent * OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult & Hit) {
 	GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("I collided with %s"), *otherActor->GetName()));
 
-	if (otherActor->Tags.Num() != 0 && otherActor->Tags[0] == "GUARD")
-		otherActor->Destroy();
+	if (otherActor->Tags.Num() != 0) {
+		if(otherActor->Tags[0] == "GUARD")
+			((AGuard*)otherActor)->Disable(5.0f);
+
+		if (otherActor->Tags[0] == "PLAYER")
+			return; // Don't destroy disabler on collision with player
+	}
+		
 
 	Destroy();
 }

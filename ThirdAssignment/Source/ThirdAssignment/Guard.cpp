@@ -148,12 +148,30 @@ void AGuard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (disabled) {
+		// Maybe move up and down, or add some "disabled" effect
+		return;
+	}
+		
+
 	// If there are no patroll points the guard is static, don't attempt to move him
 	if (patrollPoints.Num() != 0) {
 		move(DeltaTime);
 	}
+
+	// If time is stopped, agents shouldn't detect the player
 	if(!gameManager->timeStopped)
 		checkRaycast();
 
+}
+
+void AGuard::Disable(float disabledTime) {
+	disabled = true;
+	FTimerHandle timer;
+	GetWorldTimerManager().SetTimer(timer, this, &AGuard::Awake, disabledTime, false);
+}
+
+void AGuard::Awake() {
+	disabled = false;
 }
 

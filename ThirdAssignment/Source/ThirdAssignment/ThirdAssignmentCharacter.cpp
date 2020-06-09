@@ -96,7 +96,7 @@ void AThirdAssignmentCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVec
 
 void AThirdAssignmentCharacter::ShootDisabler() {
 	if(disablerCharges > 0){
-		GetWorld()->SpawnActor<ADisabler>(GetActorLocation() + GetActorForwardVector() * 30.0f, GetActorRotation());
+		GetWorld()->SpawnActor<ADisabler>(GetActorLocation() + GetActorForwardVector() * 50.0f, GetActorRotation());
 		disablerCharges--;
 	}
 	else {
