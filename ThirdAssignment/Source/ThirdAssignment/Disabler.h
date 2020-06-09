@@ -23,6 +23,19 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Aspect")
 	UStaticMeshComponent* StaticMesh;
 
+	//UFUNCTION()
+	void NotifyHit
+	(
+		class UPrimitiveComponent * MyComp,
+		AActor * Other,
+		class UPrimitiveComponent * OtherComp,
+		bool bSelfMoved,
+		FVector HitLocation,
+		FVector HitNormal,
+		FVector NormalImpulse,
+		const FHitResult & Hit
+	);
+
 	// To be set from the player that throws it
 	AActor* player;
 

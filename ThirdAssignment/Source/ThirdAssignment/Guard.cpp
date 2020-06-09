@@ -29,9 +29,6 @@ void AGuard::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//FTimerHandle timerHandle;
-	//GetWorldTimerManager().SetTimer(timerHandle, this, &AGuard::UpdateDestinationIndex, changeDirectionInterval, true, 0.0f);
-
 	UWorld* world = GetWorld();
 
 	for (TActorIterator<AThirdAssignmentCharacter> It(world, AThirdAssignmentCharacter::StaticClass()); It; ++It) {
@@ -47,29 +44,9 @@ void AGuard::BeginPlay()
 
 	if (!gameManager)
 		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "GameManager has not been found");
-}
 
-// Inverts speed
-//void AGuard::UpdateDestinationIndex() {
-//	//speed = -speed;
-//
-//	if (patrollPoints.Num() == 0){
-//		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Black, "Array has not been initialized yet");
-//		return;
-//	}
-//
-//	switch(destinationIndex){
-//		case 0: 
-//			destinationIndex = 1;
-//			break;
-//		case 1: 
-//			destinationIndex = 0;
-//			break;
-//	}
-//
-//	SetActorLocation(patrollPoints[destinationIndex]->GetActorLocation());
-//
-//}
+	Tags.Add("GUARD");
+}
 
 void AGuard::patrollPointReached() {
 

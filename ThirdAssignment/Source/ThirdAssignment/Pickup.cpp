@@ -43,7 +43,7 @@ void APickup::Tick(float DeltaTime)
 void APickup::OnPlayerTouchPickup(UPrimitiveComponent* OverlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult) {
 	
 	// Ignore actors which are not named player. This is awful, I should be setting the collision channels, or at least filtering by type, but I don't feel like it.
-	if (*otherActor->GetName() != FString("Player"))
+	if (otherActor->Tags.Num() != 0 && otherActor->Tags[0] != "PLAYER")
 		return;
 
 	AThirdAssignmentCharacter* player = (AThirdAssignmentCharacter*)otherActor;

@@ -18,9 +18,10 @@ ADisabler::ADisabler()
 	if (ball.Succeeded()) {
 		StaticMesh->SetStaticMesh(ball.Object);
 		StaticMesh->SetWorldScale3D(FVector(0.3f));
+		StaticMesh->SetNotifyRigidBodyCollision(true);
 	}
-	else
-		GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, "FUCK");
+
+
 	// TODO: Configure collision to call a function that disables the guard (if collided with one) and destroys the ball
 
 }
@@ -31,9 +32,18 @@ void ADisabler::BeginPlay()
 	Super::BeginPlay();
 
 	StaticMesh->AddImpulse(GetActorForwardVector() * 2500.0f, "None", true);
-	// TODO: Impulse the ball in the forward direction of the player that owns it
 	
 }
+
+void ADisabler::NotifyHit(UPrimitiveComponent * MyComp, AActor * otherActor, UPrimitiveComponent * OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult & Hit) {
+	GEngine->AddOnScreenDebugMessage(1, 2, FColor::Red, FString::Printf(TEXT("I collided with %s"), *otherActor->GetName()));
+
+	if (otherActor->Tags.Num() != 0 && otherActor->Tags[0] == "GUARD")
+		otherActor->Destroy();
+
+	Destroy();
+}
+
 
 // Called every frame
 void ADisabler::Tick(float DeltaTime)
