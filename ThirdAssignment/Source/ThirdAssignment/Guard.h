@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -28,7 +28,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Aspect")
 	UStaticMeshComponent* StaticMesh;
 
-
+	UPROPERTY(EditAnywhere, Category = "Animation")
+	float  disabledDisplacementDistance = 20;
+	
+	
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	int speed = 400;
 	UPROPERTY(EditAnywhere, Category = "Movement")
@@ -58,10 +61,12 @@ private:
 	AThirdAssignmentCharacter* player;
 	AGameManager* gameManager;
 	bool disabled;
+	FVector disabledPos;
 
 	void patrollPointReached();
 	void move(float DeltaTime);
 	void checkRaycast();
+	void disabledShake();
 
 
 };

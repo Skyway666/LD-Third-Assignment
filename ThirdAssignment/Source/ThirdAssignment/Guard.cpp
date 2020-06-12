@@ -143,13 +143,15 @@ void AGuard::checkRaycast() {
 
 }
 
+
+
 // Called every frame
 void AGuard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	if (disabled) {
-		// Maybe move up and down, or add some "disabled" effect
+		disabledShake();
 		return;
 	}
 		
@@ -167,8 +169,16 @@ void AGuard::Tick(float DeltaTime)
 
 void AGuard::Disable(float disabledTime) {
 	disabled = true;
+	disabledPos = GetActorLocation();
 	FTimerHandle timer;
 	GetWorldTimerManager().SetTimer(timer, this, &AGuard::Awake, disabledTime, false);
+}
+
+void AGuard::disabledShake() {
+	FVector frameDisplacement = FVector(FMath::RandRange(-1.0f, 1.0f), FMath::RandRange(-1.0f, 1.0f), FMath::RandRange(-1.0f, 1.0f));
+	frameDisplacement.Normalize();
+
+	SetActorLocation(disabledPos + frameDisplacement * disabledDisplacementDistance);
 }
 
 void AGuard::Awake() {
