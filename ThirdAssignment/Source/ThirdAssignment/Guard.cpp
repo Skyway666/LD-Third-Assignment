@@ -183,5 +183,6 @@ void AGuard::disabledShake() {
 
 void AGuard::Awake() {
 	disabled = false;
+	SetActorLocation(disabledPos);
 }
 
