@@ -34,6 +34,7 @@ void ADisabler::BeginPlay()
 	Super::BeginPlay();
 
 	StaticMesh->AddImpulse(GetActorForwardVector() * 2500.0f, "None", true);
+	Tags.Add("DISABLER");
 	
 }
 
