@@ -19,11 +19,11 @@ APickup::APickup()
 	RootComponent = transform;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
-	StaticMesh->AttachToComponent(transform, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	StaticMesh->SetupAttachment(transform, "meshSocket");
 
 	collider = CreateDefaultSubobject<UBoxComponent>("Collider");
 	collider->OnComponentBeginOverlap.AddDynamic(this, &APickup::OnPlayerTouchPickup);
-	collider->AttachToComponent(transform, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	collider->SetupAttachment(transform, "colliderSocket");
 }
 
 // Called when the game starts or when spawned
